@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DAO Maker — SHO Launchpad, MAHA Token, Staking &amp; How It Works Guide (2026)</title>
+  <meta name="description" content="Complete DAO Maker guide (2026): how the DAO Maker launchpad works, what SHOs are, how to qualify for allocations, DAO token staking tiers, MAHA governance, IDO vs SHO comparison, security checklist, and a deep FAQ for new and experienced participants.">
+  <meta name="author" content="Crypto Finance Experts">
+  <link rel="canonical" href="https://dao-maker-guide.example.com/">
+  <link rel="icon" type="image/png" href="dao.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dao-maker-guide.example.com/">
+  <meta property="og:title" content="DAO Maker — SHO Launchpad, DAO Token Staking &amp; Allocation Guide (2026)">
+  <meta property="og:description" content="Practical DAO Maker guide: SHO mechanics, allocation tiers, DAO staking, MAHA governance, project due diligence, and security best practices.">
+  <meta property="og:image" content="cover.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DAO Maker — SHO Launchpad &amp; DAO Token Guide (2026)">
+  <meta name="twitter:description" content="How DAO Maker's SHO launchpad works, allocation tiers, DAO staking, and how to participate safely in 2026.">
+
+  <style>
+    :root {
+      --b:    #7DD3FC;   /* sky-300 */
+      --b2:   #38BDF8;   /* sky-400 */
+      --b3:   #0EA5E9;   /* sky-500 */
+      --b4:   #0284C7;   /* sky-600 */
+      --ba:   #BAE6FD;   /* sky-200 */
+
+      --ink:   #F0F9FF;
+      --sub:   #E0F2FE;
+      --muted: #94A3B8;
+      --dim:   #64748B;
+
+      --bg:    #04080E;
+      --card:  rgba(255,255,255,.030);
+      --line:  rgba(255,255,255,.07);
+      --line-b:rgba(125,211,252,.13);
+
+      --ok:   #34D399;
+      --warn: #FBBF24;
+      --err:  #F87171;
+
+      --r:  12px;
+      --rl: 20px;
+      --gap: 1.2rem;
+      --sh: 0 8px 28px rgba(0,0,0,.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 900px 500px at 0%   0%,  rgba(14,165,233,.11), transparent 55%),
+        radial-gradient(ellipse 700px 400px at 100% 8%,  rgba(56,189,248,.07), transparent 50%),
+        radial-gradient(ellipse 600px 350px at 50%  98%, rgba(2,132,199,.06),  transparent 55%);
+      color: var(--muted);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { color: var(--b2); text-decoration: none }
+    a:hover { text-decoration: underline }
+    img { max-width: 100%; height: auto; display: block }
+    strong { color: #E0F2FE; font-weight: 600 }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 1.4rem }
+
+    h1,h2,h3,h4 { color: var(--ink); line-height: 1.25 }
+    h1 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 800; letter-spacing: -.4px }
+    h2 { font-size: clamp(1.25rem,2.5vw,1.75rem); font-weight: 700; margin-top: 1.8rem; padding-top: .7rem; border-top: 1px solid var(--line) }
+    h3 { font-size: 1.08rem; font-weight: 700; color: var(--sub) }
+    p,li,td,th { font-size: 1rem; line-height: 1.75 }
+    .lead { font-size: 1.08rem; color: #CBD5E1 }
+
+    /* ── HERO ── */
+    header.hero { padding: clamp(2.5rem,6vw,5rem) 0 clamp(2rem,4vw,3.5rem); border-bottom: 1px solid var(--line) }
+    .hero-card {
+      background: rgba(14,165,233,.04);
+      border: 1px solid var(--line-b);
+      border-radius: var(--rl); padding: clamp(1.4rem,3.5vw,2.4rem); box-shadow: var(--sh);
+    }
+    .brand-row { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem }
+    .brand-logo {
+      width: 54px; height: 54px; border-radius: 13px;
+      border: 1px solid rgba(125,211,252,.24); background: rgba(14,165,233,.09);
+      padding: .3rem; object-fit: contain; box-shadow: 0 6px 18px rgba(0,0,0,.40); flex: 0 0 auto;
+    }
+    .brand-label { color: var(--dim); font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .4px }
+    .brand-sub   { color: var(--muted); font-size: .85rem }
+
+    /* ── CTA — standout ── */
+    .cta-center { display: flex; justify-content: center; margin-top: 2rem }
+    .cta {
+      display: inline-flex; align-items: center; gap: .7rem;
+      background: linear-gradient(135deg, #BAE6FD 0%, #38BDF8 40%, #0EA5E9 75%, #0284C7 100%);
+      color: #001829;
+      padding: 1.2rem 3rem;
+      border-radius: 16px;
+      font-weight: 900; font-size: 1.15rem; letter-spacing: .2px;
+      box-shadow:
+        0 0 0 1px rgba(186,230,253,.30),
+        0 0 22px rgba(56,189,248,.35),
+        0 8px 24px rgba(14,165,233,.30),
+        0 22px 52px rgba(2,132,199,.28);
+      border: none; cursor: pointer; text-decoration: none;
+      transition: transform .18s, box-shadow .18s, filter .18s;
+      position: relative;
+    }
+    /* outer glow ring */
+    .cta::before {
+      content: '';
+      position: absolute; inset: -3px;
+      border-radius: 19px;
+      background: linear-gradient(135deg, rgba(186,230,253,.40), rgba(14,165,233,.20), rgba(2,132,199,.30));
+      z-index: -1;
+      filter: blur(8px);
+      opacity: 0;
+      transition: opacity .18s;
+    }
+    .cta:hover {
+      transform: translateY(-4px) scale(1.025); filter: brightness(1.08); text-decoration: none; color: #001829;
+      box-shadow:
+        0 0 0 1px rgba(186,230,253,.45),
+        0 0 32px rgba(56,189,248,.50),
+        0 12px 32px rgba(14,165,233,.38),
+        0 28px 60px rgba(2,132,199,.35);
+    }
+    .cta:hover::before { opacity: 1 }
+    .cta-icon { font-size: 1.3rem }
+
+    /* ── NOTE ── */
+    .note {
+      border-left: 3px solid var(--b2); padding: .8rem 1rem;
+      background: rgba(14,165,233,.07); border-radius: 0 9px 9px 0;
+      color: var(--sub); margin-top: 1rem;
+    }
+
+    /* ── STEPS ── */
+    section.step-guide { padding: clamp(2rem,5vw,3.5rem) 0 }
+    .steps { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .step {
+      background: var(--card); border: 1px solid var(--line);
+      border-top: 2px solid rgba(125,211,252,.24); border-radius: var(--r);
+      padding: 1.25rem; box-shadow: var(--sh); transition: transform .18s;
+    }
+    .step:hover { transform: translateY(-3px) }
+    .step .icon {
+      width: 44px; height: 44px; border-radius: 9px;
+      display: inline-grid; place-items: center;
+      background: rgba(14,165,233,.11); margin-bottom: .65rem;
+      font-weight: 800; font-size: .95rem; color: var(--b2);
+      border: 1px solid rgba(125,211,252,.20);
+    }
+
+    /* ── CARD ── */
+    main .card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 1.4rem; margin: 1.2rem 0; box-shadow: var(--sh);
+    }
+    main .card > h2:first-child { margin-top: 0; border-top: none; padding-top: 0 }
+
+    /* ── TOC ── */
+    .toc { border: 1px solid var(--line-b); background: rgba(14,165,233,.05); border-radius: var(--r); padding: 1.1rem 1.3rem }
+    .toc strong { color: var(--ink) }
+    .toc ul { margin: .5rem 0 0; padding-left: 1.1rem }
+    .toc li { margin: .28rem 0; font-size: .96rem }
+    .toc a { font-weight: 600 }
+
+    /* ── GRID ── */
+    .grid-2 { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .callout-grid { display: grid; gap: var(--gap); grid-template-columns: 1fr; margin-top: .8rem }
+    .mini { background: rgba(255,255,255,.02); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem }
+    .mini h3 { margin-bottom: .35rem }
+    .kpi-badges { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .55rem }
+    .kpi-badges span {
+      border: 1px solid rgba(125,211,252,.20); background: rgba(14,165,233,.08);
+      color: var(--sub); padding: .26rem .54rem; border-radius: 999px; font-size: .87rem; font-weight: 600;
+    }
+
+    /* ── TIER CARDS ── */
+    .tier-grid { display: grid; gap: var(--gap); grid-template-columns: 1fr; margin-top: .9rem }
+    .tier {
+      background: rgba(14,165,233,.05); border: 1px solid rgba(125,211,252,.18);
+      border-radius: var(--r); padding: 1.1rem;
+    }
+    .tier-name { font-weight: 800; font-size: 1.05rem; color: var(--b); margin-bottom: .3rem }
+    .tier-req  { font-size: .9rem; color: var(--b2); font-weight: 700; margin-bottom: .4rem }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--line) }
+    table { width: 100%; border-collapse: collapse; min-width: 480px }
+    th,td { padding: .8rem .95rem; border-bottom: 1px solid var(--line); text-align: left }
+    th { background: rgba(14,165,233,.07); color: var(--ink); font-weight: 700; font-size: .93rem }
+    tr.hi { background: rgba(14,165,233,.04) }
+    tr:hover td { background: rgba(255,255,255,.018) }
+    tr:last-child td { border-bottom: none }
+    .ok { color: var(--ok) } .warn { color: var(--warn) } .err { color: var(--err) }
+
+    /* ── EEAT ── */
+    .eeat { background: var(--card); border: 1px solid var(--line-b); border-radius: var(--r); padding: 1.4rem; box-shadow: var(--sh) }
+    .eeat > h2:first-child { margin-top: 0; border-top: none; padding-top: 0 }
+
+    /* ── FAQ ── */
+    .faq-item { border-bottom: 1px solid var(--line); padding: .9rem 0 }
+    .faq-item:last-child { border-bottom: none }
+    .faq-button { all: unset; display: flex; justify-content: space-between; align-items: flex-start; width: 100%; cursor: pointer; gap: 1rem }
+    .faq-button:focus-visible { outline: 2px solid var(--b2); border-radius: 4px }
+    .faq-button h3 { margin: 0; font-weight: 700; font-size: 1rem; line-height: 1.4 }
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height .26s ease }
+    .faq-content.open { padding-top: .65rem }
+    .faq-plus { font-weight: 800; font-size: 1.35rem; color: var(--b2); flex: 0 0 auto; line-height: 1; transition: transform .2s }
+    .faq-button[aria-expanded="true"] .faq-plus { transform: rotate(45deg) }
+
+    @media(min-width:860px){
+      .steps { grid-template-columns: repeat(4,1fr) }
+      .grid-2 { grid-template-columns: 1fr 1fr }
+      .callout-grid { grid-template-columns: 1fr 1fr }
+      .tier-grid { grid-template-columns: repeat(3,1fr) }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" role="banner">
+  <div class="container">
+    <div class="hero-card">
+      <div class="brand-row">
+        <img class="brand-logo" src="dao.png" alt="DAO Maker logo">
+        <div>
+          <div class="brand-label">Complete Launchpad Guide</div>
+          <div class="brand-sub">SHO Launchpad · DAO Staking · Allocation Tiers · MAHA · Project Research</div>
+        </div>
+      </div>
+
+      <h1>DAO Maker</h1>
+      <p class="lead" style="margin-top:.7rem">
+        The complete guide to <strong>DAO Maker</strong> — one of crypto's most established
+        <strong>retail-focused launchpad platforms</strong> enabling everyday investors to access
+        early-stage token sales through <strong>Strong HODLer Offerings (SHOs)</strong>.
+        Understand how <strong>SHO allocation tiers work</strong>, how to stake DAO tokens
+        to qualify, what makes DAO Maker's model different from other IDO launchpads,
+        how <strong>MAHA governance</strong> fits in, and how to evaluate projects
+        and protect yourself from <strong>launchpad scams and low-quality offerings</strong>.
+      </p>
+
+      <div class="cta-center">
+        <a href="#" class="cta" aria-label="Open DAO Maker App">
+          <span class="cta-icon">🚀</span> Open DAO Maker
+        </a>
+      </div>
+
+      <div class="note">
+        <strong>Important context:</strong> Participating in early-stage token sales carries significant risk —
+        most projects launched on any launchpad decline substantially from their initial listing price.
+        DAO Maker participation requires staking DAO tokens (capital at risk) plus the underlying
+        project investment. Treat launchpad investments as high-risk, illiquid positions.
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STEPS -->
+<section class="step-guide" aria-labelledby="how-works">
+  <div class="container">
+    <h2 id="how-works" style="margin-top:0;border-top:none;padding-top:0">
+      How DAO Maker Works: Stake → Qualify → Apply → Invest → Vest
+    </h2>
+    <div class="steps" role="list">
+      <article class="step" role="listitem">
+        <div class="icon">01</div>
+        <h3>Stake DAO tokens to reach a tier</h3>
+        <p>Buy and stake DAO tokens on the DAO Maker platform to qualify for SHO participation. The amount staked determines your tier, which determines the size of allocation you can apply for in each SHO.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">02</div>
+        <h3>Apply for SHO allocation</h3>
+        <p>When a new SHO launches, eligible stakers apply during the registration window. A lottery or guaranteed allocation system — depending on your tier — determines who receives tokens and how many.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">03</div>
+        <h3>Invest USDC/USDT at the SHO price</h3>
+        <p>Successful applicants invest a fixed USDC or USDT amount in exchange for project tokens at the SHO (pre-listing) price — typically significantly below the anticipated open market price at TGE.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">04</div>
+        <h3>Receive tokens on a vesting schedule</h3>
+        <p>Purchased tokens are released over a vesting schedule — typically an initial unlock at TGE (Token Generation Event) followed by monthly cliff releases over 3–18 months depending on the project terms.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="container" role="main">
+
+  <section class="card toc" aria-label="Table of Contents">
+    <strong>On this page — DAO Maker:</strong>
+    <ul>
+      <li><a href="#overview">What is DAO Maker and how does it differ from other launchpads</a></li>
+      <li><a href="#sho">SHO explained: Strong HODLer Offering mechanics in detail</a></li>
+      <li><a href="#tiers">DAO staking tiers: how to qualify for SHO allocations</a></li>
+      <li><a href="#dao-token">DAO token: utility, staking, and tokenomics</a></li>
+      <li><a href="#maha">MAHA token: governance and its role in the ecosystem</a></li>
+      <li><a href="#vesting">Vesting schedules: how token unlocks work post-SHO</a></li>
+      <li><a href="#due-diligence">Project due diligence: how to evaluate SHO listings</a></li>
+      <li><a href="#safety">DAO Maker safety: risks, scams, and how to protect yourself</a></li>
+      <li><a href="#comparison">DAO Maker vs Polkastarter vs GameFi vs Seedify</a></li>
+      <li><a href="#best-practices">Best practices for SHO participation</a></li>
+      <li><a href="#troubleshooting">Troubleshooting: failed allocations, vesting claims, tier questions</a></li>
+      <li><a href="#eeat">Authoritative sources &amp; references</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="card" id="overview">
+    <h2>What Is DAO Maker and How Does It Differ from Other Launchpads?</h2>
+    <p>
+      <strong>DAO Maker</strong> is a Web3 growth technology company and launchpad platform that
+      pioneered the concept of <strong>retail-accessible early-stage token sales</strong>.
+      Founded in 2018, it introduced the Strong HODLer Offering (SHO) model — a structured system
+      designed to give long-term DAO token holders priority access to project launches,
+      while rewarding commitment over short-term speculation.
+    </p>
+    <p>
+      Unlike typical IDO platforms where anyone with a wallet can participate regardless of
+      long-term commitment, DAO Maker's tier system explicitly rewards holders who stake
+      larger amounts of DAO for longer periods — aligning platform participants with
+      the interests of the projects being launched.
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>What sets DAO Maker apart</h3>
+        <p style="color:var(--muted)">The SHO model with tiered staking, investor protection features (refund mechanisms on certain offerings), and a focus on vetted projects with post-launch support distinguish it from simpler IDO platforms.</p>
+        <div class="kpi-badges"><span>SHO model</span><span>Tiered staking</span><span>Refund mechanisms</span></div>
+      </div>
+      <div class="mini">
+        <h3>Who uses DAO Maker</h3>
+        <p style="color:var(--muted)">Retail crypto investors seeking early-stage project exposure, DeFi and Web3 project teams looking for a launch partner with community reach, and experienced launchpad participants building diversified early-stage portfolios.</p>
+        <div class="kpi-badges"><span>Retail investors</span><span>Project teams</span><span>Early-stage focus</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHO -->
+  <section class="card" id="sho">
+    <h2>SHO Explained: Strong HODLer Offering — How the Mechanics Work in Detail</h2>
+    <p>
+      The <strong>Strong HODLer Offering (SHO)</strong> is DAO Maker's signature sale format.
+      The name reflects the core design principle: priority access goes to strong holders of DAO
+      who demonstrate long-term commitment by staking significant amounts of the platform token.
+    </p>
+
+    <div class="table-wrap">
+      <table aria-label="SHO mechanics">
+        <thead>
+          <tr><th>Phase</th><th>What happens</th><th>Timeframe</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Registration window</td>
+            <td>Eligible stakers register interest in the SHO during an announced window</td>
+            <td>Usually 24–72 hours</td>
+          </tr>
+          <tr>
+            <td>Allocation determination</td>
+            <td>Guaranteed or lottery allocation assigned based on tier — higher tiers guaranteed, lower tiers lottery-based</td>
+            <td>After registration closes</td>
+          </tr>
+          <tr class="hi">
+            <td>Investment window</td>
+            <td>Successful participants send USDC/USDT to receive their token allocation</td>
+            <td>24–48 hours after allocation</td>
+          </tr>
+          <tr>
+            <td>TGE (Token Generation Event)</td>
+            <td>Project token launches — initial unlock percentage distributed to investors</td>
+            <td>Per project schedule</td>
+          </tr>
+          <tr class="hi">
+            <td>Vesting releases</td>
+            <td>Remaining tokens unlock on a monthly cliff schedule over the vesting period</td>
+            <td>Monthly over 3–18 months</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>Refund mechanism:</strong> Some DAO Maker SHOs have included investor protection features —
+      such as partial refunds if a project's token drops below a certain price threshold post-TGE.
+      Not all SHOs include this — verify the specific terms for each offering before participating.
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section class="card" id="tiers">
+    <h2>DAO Staking Tiers: How to Qualify for SHO Allocations</h2>
+    <p>
+      DAO Maker uses a tiered staking system — the more DAO tokens you stake on the platform,
+      the higher your tier, and the larger and more guaranteed your SHO allocations become.
+      Lower tiers participate via lottery; higher tiers receive guaranteed spots.
+    </p>
+
+    <div class="tier-grid" role="list">
+      <div class="tier" role="listitem">
+        <div class="tier-name">Tier 1 — Entry</div>
+        <div class="tier-req">Lowest DAO stake requirement</div>
+        <p style="color:var(--muted); font-size:.95rem">Lottery-based allocation. Chance of winning depends on total participants at this tier. Smallest allocation size if selected.</p>
+        <div class="kpi-badges" style="margin-top:.6rem"><span>Lottery</span><span>Small alloc</span></div>
+      </div>
+      <div class="tier" role="listitem">
+        <div class="tier-name">Tier 2 — Silver</div>
+        <div class="tier-req">Mid-range DAO stake</div>
+        <p style="color:var(--muted); font-size:.95rem">Higher lottery win probability than Tier 1. Improved allocation size. Better odds across most SHOs due to smaller participant pool.</p>
+        <div class="kpi-badges" style="margin-top:.6rem"><span>Better odds</span><span>Larger alloc</span></div>
+      </div>
+      <div class="tier" role="listitem">
+        <div class="tier-name">Tier 3 — Gold</div>
+        <div class="tier-req">High DAO stake</div>
+        <p style="color:var(--muted); font-size:.95rem">Guaranteed allocation in most SHOs. Significantly larger investment amount. Consistent access without lottery risk at this level.</p>
+        <div class="kpi-badges" style="margin-top:.6rem"><span>Guaranteed</span><span>High alloc</span></div>
+      </div>
+      <div class="tier" role="listitem">
+        <div class="tier-name">Tier 4 — Platinum</div>
+        <div class="tier-req">Very high DAO stake</div>
+        <p style="color:var(--muted); font-size:.95rem">Guaranteed allocation across all SHOs with maximum allocation size. Priority access and additional perks for the highest committed platform participants.</p>
+        <div class="kpi-badges" style="margin-top:.6rem"><span>Max alloc</span><span>All SHOs</span></div>
+      </div>
+      <div class="tier" role="listitem">
+        <div class="tier-name">Tier 5 — Diamond</div>
+        <div class="tier-req">Maximum DAO stake tier</div>
+        <p style="color:var(--muted); font-size:.95rem">Highest allocation amounts, additional governance rights, and potential for private round access alongside the public SHO. Top-tier commitment and reward level.</p>
+        <div class="kpi-badges" style="margin-top:.6rem"><span>Private access</span><span>Governance</span></div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:1rem">
+      <strong>Verify current tier thresholds:</strong> DAO staking requirements per tier change
+      based on DAO token price and governance decisions. Check the current tier requirements
+      in the official DAO Maker app — never rely on third-party guides for threshold figures
+      as they become outdated quickly.
+    </div>
+  </section>
+
+  <!-- DAO TOKEN -->
+  <section class="card" id="dao-token">
+    <h2>DAO Token: Utility, Staking Mechanics, and What It Powers on the Platform</h2>
+    <p>
+      The <strong>DAO token</strong> is the central utility asset of the DAO Maker ecosystem.
+      Its primary function is gating access to SHO allocations — but it also plays governance
+      and value-accrual roles within the platform.
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>SHO access gating</h3>
+        <p style="color:var(--muted)">Staking DAO tokens is the prerequisite for any SHO participation. Without staked DAO, no allocation is possible regardless of how many USDC you're willing to invest. The staked amount directly determines your tier and allocation size.</p>
+        <div class="kpi-badges"><span>Tier gating</span><span>Staking required</span></div>
+      </div>
+      <div class="mini">
+        <h3>Platform governance</h3>
+        <p style="color:var(--muted)">DAO holders participate in governance votes on platform direction, new feature prioritisation, listing criteria, and treasury management — giving long-term holders a voice in how the platform evolves.</p>
+        <div class="kpi-badges"><span>On-chain votes</span><span>Platform direction</span></div>
+      </div>
+      <div class="mini">
+        <h3>Staking rewards</h3>
+        <p style="color:var(--muted)">DAO stakers may earn staking rewards from platform fee revenue in addition to SHO access rights. Reward rates depend on total staked supply and platform revenue performance.</p>
+        <div class="kpi-badges"><span>Fee sharing</span><span>Variable APR</span></div>
+      </div>
+      <div class="mini">
+        <h3>Secondary token value drivers</h3>
+        <p style="color:var(--muted)">DAO token demand is directly tied to platform activity — more popular SHOs create more buying pressure from participants wanting to reach higher tiers. This links token price to platform success.</p>
+        <div class="kpi-badges"><span>Demand driven</span><span>Platform correlated</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAHA -->
+  <section class="card" id="maha">
+    <h2>MAHA Token: Governance and Its Role in the DAO Maker Ecosystem</h2>
+    <p>
+      <strong>MAHA</strong> is a governance token within the DAO Maker ecosystem,
+      designed to complement the DAO token by providing a dedicated governance layer
+      for platform decisions. While DAO is the primary utility and staking token,
+      MAHA holders participate in specific governance processes related to
+      platform development priorities and treasury allocation.
+    </p>
+
+    <div class="note">
+      <strong>DAO vs MAHA:</strong> The DAO token is the staking and access token —
+      you need it to participate in SHOs. MAHA is primarily a governance instrument.
+      For most launchpad participants, DAO token acquisition and staking is the core action;
+      MAHA is relevant for those who want to actively participate in platform governance.
+      Verify the current role of each token in the official DAO Maker documentation
+      as their functions have evolved over platform iterations.
+    </div>
+  </section>
+
+  <!-- VESTING -->
+  <section class="card" id="vesting">
+    <h2>Vesting Schedules: How Token Unlocks Work After a Successful SHO</h2>
+    <p>
+      Every SHO has a project-specific vesting schedule. Understanding vesting before investing
+      is essential — it determines when and how much of your purchased tokens become liquid.
+    </p>
+
+    <div class="table-wrap">
+      <table aria-label="Vesting schedule examples">
+        <thead>
+          <tr><th>Vesting type</th><th>How it works</th><th>Implication for investors</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>TGE unlock only</td>
+            <td>100% of tokens released at Token Generation Event</td>
+            <td>Immediate liquidity — but often lowest-quality projects offer this to attract participation</td>
+          </tr>
+          <tr>
+            <td>TGE + linear vesting</td>
+            <td>e.g. 20% at TGE, remaining 80% unlocked monthly over 12 months</td>
+            <td>Partial immediate liquidity; forces long-term holding for most of the position</td>
+          </tr>
+          <tr class="hi">
+            <td>Cliff + linear vesting</td>
+            <td>0% at TGE, 100% unlock begins after a cliff (e.g. 3 months), then monthly</td>
+            <td>No immediate liquidity — full commitment required; tests genuine belief in the project</td>
+          </tr>
+          <tr>
+            <td>Long vesting (18+ months)</td>
+            <td>Small TGE unlock, very gradual monthly releases over 18–24 months</td>
+            <td>Capital locked for a long time — requires high conviction and liquidity planning</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>Vesting risk:</strong> If a project's token price collapses post-TGE (which is common),
+      your remaining vested tokens may be worth far less than your original investment by the time
+      they unlock. A 10× TGE pop that then drops 95% during your vesting period is a net loss.
+      Model realistic scenarios — not just the upside — before committing to long vesting schedules.
+    </div>
+  </section>
+
+  <!-- DUE DILIGENCE -->
+  <section class="card" id="due-diligence">
+    <h2>Project Due Diligence: How to Evaluate SHO Listings Before Investing</h2>
+    <p>
+      DAO Maker vets projects before listing them as SHOs — but "vetted by a launchpad"
+      is not the same as "safe investment." Every SHO requires your own independent research.
+    </p>
+    <ol style="padding-left:1.3rem">
+      <li style="margin-bottom:.6rem"><strong>Verify the team identity</strong> — are founders and key team members publicly identified with verifiable professional histories? Anonymous teams are higher risk, especially for financial protocols.</li>
+      <li style="margin-bottom:.6rem"><strong>Check for smart contract audits</strong> — has the project's contract been audited by a reputable firm (CertiK, Trail of Bits, OpenZeppelin)? Read the audit report, not just the badge.</li>
+      <li style="margin-bottom:.6rem"><strong>Assess token allocation and vesting</strong> — what percentage goes to team and investors? High insider allocations with short vesting create post-TGE selling pressure on retail buyers.</li>
+      <li style="margin-bottom:.6rem"><strong>Evaluate the valuation</strong> — what is the FDV (fully diluted valuation) at the SHO price? Many launchpad projects are offered at valuations that already price in enormous growth. High FDV at launch limits upside.</li>
+      <li style="margin-bottom:.6rem"><strong>Research the product and traction</strong> — does the project have a working product, real users, or genuine on-chain activity? Or is it pre-product with only a whitepaper and roadmap?</li>
+      <li style="margin-bottom:.6rem"><strong>Understand the vesting schedule</strong> — how long will your investment be locked? What is your realistic exit scenario if the token underperforms?</li>
+      <li><strong>Check the backers</strong> — who invested in private rounds? Reputable VCs and angels provide some signal quality, though not a guarantee of success.</li>
+    </ol>
+  </section>
+
+  <!-- SAFETY -->
+  <section class="card" id="safety">
+    <h2>DAO Maker Safety: Risks, Scams Targeting Participants, and How to Protect Yourself</h2>
+
+    <div class="table-wrap">
+      <table aria-label="Risk and scam types">
+        <thead>
+          <tr><th>Risk / Scam type</th><th>How it works</th><th>Protection</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Phishing sites mimicking DAO Maker</td>
+            <td>Fake UI asks wallet connection or seed phrase to "register for SHO"</td>
+            <td class="ok">Bookmark official URL — verify domain every session</td>
+          </tr>
+          <tr>
+            <td>Fake SHO announcements on social media</td>
+            <td>Scammers announce fake SHOs via Twitter/Telegram with malicious links</td>
+            <td class="ok">Only trust SHO announcements from official DAO Maker channels</td>
+          </tr>
+          <tr class="hi">
+            <td>Project token collapse post-TGE</td>
+            <td>SHO project lists at high FDV, early investors sell, token crashes during vesting</td>
+            <td class="warn">Due diligence on FDV and vesting; size positions conservatively</td>
+          </tr>
+          <tr>
+            <td>DAO token price risk</td>
+            <td>DAO token drops significantly, reducing the USD value of your staked collateral</td>
+            <td class="warn">Staking DAO requires accepting DAO price exposure on top of SHO risk</td>
+          </tr>
+          <tr class="hi">
+            <td>Smart-contract exploit (platform)</td>
+            <td>Staked DAO or invested funds at risk from protocol-level vulnerabilities</td>
+            <td class="warn">DAO Maker has been exploited historically — size positions accordingly</td>
+          </tr>
+          <tr>
+            <td>Impersonation support scams</td>
+            <td>"DAO Maker support" DMs claiming to help with failed allocations in exchange for wallet access</td>
+            <td class="ok">Official support never DMs first — report and block impersonators</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:1rem">
+      <strong>Historical exploit disclosure:</strong> DAO Maker suffered a smart-contract exploit
+      in 2021 resulting in significant user fund losses. The platform subsequently improved security
+      and compensated affected users. This history is relevant context for assessing platform risk —
+      no launchpad platform has a zero-risk track record.
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="card" id="comparison">
+    <h2>DAO Maker vs Polkastarter vs GameFi vs Seedify: Launchpad Comparison</h2>
+
+    <div class="table-wrap">
+      <table aria-label="Launchpad comparison">
+        <thead>
+          <tr><th>Feature</th><th>DAO Maker</th><th>Polkastarter</th><th>GameFi</th><th>Seedify</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Sale format</td>
+            <td>SHO (tiered staking)</td>
+            <td>POLS staking lottery</td>
+            <td>GAFI staking tiers</td>
+            <td>SFUND staking tiers</td>
+          </tr>
+          <tr>
+            <td>Category focus</td>
+            <td>Multi-category Web3</td>
+            <td>Multi-chain DeFi/NFT</td>
+            <td>GameFi &amp; Metaverse</td>
+            <td>GameFi &amp; Web3 games</td>
+          </tr>
+          <tr class="hi">
+            <td>Investor protection</td>
+            <td class="ok">Refund mechanisms (select SHOs)</td>
+            <td class="warn">Standard IDO terms</td>
+            <td class="warn">Standard IDO terms</td>
+            <td class="warn">Standard IDO terms</td>
+          </tr>
+          <tr>
+            <td>Platform track record</td>
+            <td class="ok">Since 2018 — long history</td>
+            <td class="ok">Since 2020</td>
+            <td class="warn">Newer</td>
+            <td class="warn">Since 2021</td>
+          </tr>
+          <tr class="hi">
+            <td>Access model</td>
+            <td>Tiered staking — lottery at low tiers</td>
+            <td>POLS lottery / guaranteed</td>
+            <td>Tiered staking</td>
+            <td>Tiered staking</td>
+          </tr>
+          <tr>
+            <td>Chain focus</td>
+            <td>Multi-chain</td>
+            <td>Multi-chain (Ethereum focus)</td>
+            <td>BNB Chain focus</td>
+            <td>BNB Chain focus</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- BEST PRACTICES -->
+  <section class="card" id="best-practices">
+    <h2>Best Practices for SHO Participation on DAO Maker</h2>
+    <ul style="padding-left:1.2rem">
+      <li style="margin-bottom:.5rem"><strong>Never invest more in a single SHO than you can afford to lose entirely</strong> — early-stage token investments are high-risk by nature. A realistic base case is a partial or total loss.</li>
+      <li style="margin-bottom:.5rem"><strong>Factor in DAO token price risk</strong> before staking — you're taking on both DAO price exposure and the SHO project risk simultaneously. Your effective capital at risk is larger than just the SHO investment.</li>
+      <li style="margin-bottom:.5rem"><strong>Bookmark the official DAO Maker URL</strong> and verify the domain before every session. Launchpad phishing sites are sophisticated and prevalent during active SHO periods.</li>
+      <li style="margin-bottom:.5rem"><strong>Do your own due diligence on every project</strong> — don't treat DAO Maker's vetting as sufficient research. Read the whitepaper, check the audit, research the team independently.</li>
+      <li style="margin-bottom:.5rem"><strong>Understand the full vesting schedule before investing</strong> — model a scenario where the token drops 80% post-TGE and ask whether you can sustain the locked position without financial stress.</li>
+      <li style="margin-bottom:.5rem"><strong>Diversify across multiple SHOs</strong> rather than concentrating in one — portfolio diversification across launchpad investments significantly improves expected outcomes statistically.</li>
+      <li style="margin-bottom:.5rem"><strong>Revoke stale token approvals</strong> after SHO interactions using Revoke.cash — smart contract approvals on launchpad platforms accumulate over time.</li>
+      <li><strong>Never share your seed phrase or private key</strong> with any "DAO Maker support" or "SHO assistance" contact — legitimate support never requests this information.</li>
+    </ul>
+  </section>
+
+  <!-- TROUBLESHOOTING -->
+  <section class="card" id="troubleshooting">
+    <h2>Troubleshooting DAO Maker: Failed Allocations, Vesting Claims, and Tier Questions</h2>
+
+    <h3>"I registered for an SHO but didn't receive an allocation"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>For lottery-tier SHOs, not receiving an allocation is expected — there are more applicants than available slots at lower tiers. Higher tiers provide guaranteed allocations for this reason.</li>
+      <li>Verify that your DAO stake was correctly active and met the tier threshold at the time of the snapshot — late staking or pending transactions may have made you ineligible.</li>
+      <li>Check that you completed the registration correctly within the window — partial or failed registrations are not always flagged clearly in the UI.</li>
+    </ul>
+
+    <h3>"My vested tokens are not appearing after TGE"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>Confirm you are looking at the correct chain — SHO tokens are often on a different chain from where you made your investment. Check the project's documentation for the correct network.</li>
+      <li>Some vesting contracts require a manual claim transaction — tokens do not automatically transfer to your wallet. Visit the DAO Maker vesting dashboard and claim your unlocked allocation.</li>
+      <li>Verify the TGE date and initial unlock percentage — if the initial unlock is 0% (cliff vesting), no tokens will be visible until after the cliff period.</li>
+    </ul>
+
+    <h3>"My DAO tier seems lower than expected after staking"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>Tier thresholds are denominated in DAO token count, not USD value — if DAO price has risen, you may need more USD to acquire the same tier-qualifying amount of tokens.</li>
+      <li>Staking transactions may have a brief confirmation delay before reflecting in your tier status. Allow the transaction to fully confirm and refresh the dashboard.</li>
+    </ul>
+
+    <div class="note">
+      <strong>For persistent issues:</strong> Use DAO Maker's official support channels — the help desk
+      linked in the official app or the verified Telegram support group listed in official documentation.
+      Never respond to unsolicited "support" messages from unknown accounts — these are almost always scams.
+    </div>
+  </section>
+
+  <!-- EEAT -->
+  <section class="eeat" id="eeat" aria-labelledby="eeat-title">
+    <h2 id="eeat-title">DAO Maker: Authoritative References &amp; External Sources</h2>
+
+    <h3>DAO Maker — Official Sources</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://daomaker.com/" target="_blank" rel="noopener nofollow">DAO Maker — Official Platform</a></li>
+      <li><a href="https://docs.daomaker.com/" target="_blank" rel="noopener nofollow">DAO Maker — Official Documentation</a></li>
+      <li><a href="https://github.com/daomaker" target="_blank" rel="noopener nofollow">DAO Maker — GitHub</a></li>
+    </ul>
+
+    <h3>Launchpad Research &amp; Token Data</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://defillama.com/" target="_blank" rel="noopener nofollow">DeFiLlama — Protocol TVL &amp; Launchpad Data</a></li>
+      <li><a href="https://dappradar.com/" target="_blank" rel="noopener nofollow">DappRadar — Dapp Activity Analytics</a></li>
+      <li><a href="https://www.coingecko.com/" target="_blank" rel="noopener nofollow">CoinGecko — DAO Token Price &amp; Market Data</a></li>
+    </ul>
+
+    <h3>Smart Contract Security</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://www.certik.com/" target="_blank" rel="noopener nofollow">CertiK — Smart Contract Audit Reports</a></li>
+      <li><a href="https://blog.openzeppelin.com/security-audits" target="_blank" rel="noopener nofollow">OpenZeppelin — Security Audit Research</a></li>
+      <li><a href="https://rekt.news/" target="_blank" rel="noopener nofollow">Rekt.news — DeFi Exploit Post-Mortems</a></li>
+      <li><a href="https://revoke.cash/" target="_blank" rel="noopener nofollow">Revoke.cash — Token Approval Manager</a></li>
+    </ul>
+
+    <div class="note" style="margin-top:1.2rem">
+      <strong>About:</strong> Prepared by Crypto Finance Experts as a practical, SEO-oriented knowledge base for
+      <em>DAO Maker</em>: SHO launchpad mechanics, staking tiers, DAO and MAHA tokens, vesting schedules, project due diligence, and security.
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="card" id="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title" style="margin-top:0;border-top:none;padding-top:0">DAO Maker: Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f1" id="b1">
+        <h3>What is DAO Maker and what is a SHO?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f1" class="faq-content" role="region" aria-labelledby="b1">
+        <p>DAO Maker is a Web3 launchpad and growth platform that gives retail investors access to early-stage token sales. A SHO (Strong HODLer Offering) is DAO Maker's primary sale format — a structured token offering where eligibility and allocation size are determined by how many DAO tokens you've staked on the platform. Higher stakes = higher tier = larger guaranteed allocations in new project launches.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f2" id="b2">
+        <h3>How do I qualify for a DAO Maker SHO?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f2" class="faq-content" role="region" aria-labelledby="b2">
+        <p>You need to stake DAO tokens on the DAO Maker platform to reach one of the tier levels. Once staked, you're eligible to register for upcoming SHOs during the registration window. Lower tiers participate via lottery; higher tiers receive guaranteed allocations. The exact amount of DAO required per tier changes over time — check the official DAO Maker platform for current tier thresholds.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f3" id="b3">
+        <h3>What is the difference between the DAO token and MAHA?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f3" class="faq-content" role="region" aria-labelledby="b3">
+        <p>The DAO token is the primary utility and staking token — you need it to qualify for SHO allocations, and staking it determines your tier and access level. MAHA is a governance token within the ecosystem used for participating in specific platform governance decisions. For most SHO participants, the DAO token is the key asset; MAHA is for those who want to actively participate in governance processes.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f4" id="b4">
+        <h3>Can I lose money participating in DAO Maker SHOs?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f4" class="faq-content" role="region" aria-labelledby="b4">
+        <p>Yes — significantly. Early-stage token investments are high-risk. Most tokens launched on any launchpad decline substantially from their initial listing price over time. You face multiple layers of risk: the SHO project token may lose value during or after vesting, the DAO token you staked for access may also decline, and platform-level smart-contract risks exist. Treat launchpad investments as speculative, high-risk capital only.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f5" id="b5">
+        <h3>What is vesting and why does it matter for SHO investors?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f5" class="faq-content" role="region" aria-labelledby="b5">
+        <p>Vesting is the schedule by which your purchased SHO tokens are released to you over time. Typically you receive a small percentage at TGE (Token Generation Event) and the rest unlocks monthly over 3–18 months. Vesting matters because if the token price collapses after TGE — which is common — you remain locked into the position for months, unable to exit the remaining allocation. Model worst-case vesting scenarios before investing.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f6" id="b6">
+        <h3>How does DAO Maker's refund mechanism work?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f6" class="faq-content" role="region" aria-labelledby="b6">
+        <p>Some DAO Maker SHOs include investor protection in the form of partial refund mechanisms — if a project's token drops below a certain price threshold post-TGE, investors may be eligible to return unlocked tokens in exchange for a portion of their original investment back. Not all SHOs include this feature, and the specific terms vary per offering. Check each SHO's terms carefully before participating to understand whether protection applies.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f7" id="b7">
+        <h3>Is DAO Maker safe to use after the 2021 exploit?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f7" class="faq-content" role="region" aria-labelledby="b7">
+        <p>DAO Maker experienced a significant smart-contract exploit in 2021. The team subsequently improved security protocols and compensated affected users. The platform has continued operating since then. However, no platform can claim a zero-risk profile, and this history is relevant context. Size your positions to reflect the platform risk in addition to project-level risk, and use a hardware wallet for significant holdings.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f8" id="b8">
+        <h3>How many DAO tokens do I need for guaranteed allocation?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f8" class="faq-content" role="region" aria-labelledby="b8">
+        <p>Guaranteed allocation starts at Tier 3 (Gold) and above. The exact DAO token amount required changes over time based on DAO token price and governance decisions. Check the official DAO Maker platform for current tier thresholds — any specific number in a guide may be outdated. Calculate the USD cost of reaching a guaranteed tier at current DAO prices before making staking decisions.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f9" id="b9">
+        <h3>Can I unstake my DAO tokens at any time?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f9" class="faq-content" role="region" aria-labelledby="b9">
+        <p>DAO staking terms include an unstaking period — your tokens are not immediately liquid after you decide to unstake. The unstaking delay exists to prevent manipulation of tier snapshots right before SHO registrations. Check the current unstaking period in the official DAO Maker app before staking, especially if you may need access to those funds in the near term.</p>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="container" role="contentinfo" style="padding:2.5rem 0; border-top:1px solid var(--line); margin-top:2rem">
+  <p style="color:var(--dim); font-size:.93rem">© 2026 DAO Maker Guide. Educational content with a security-first focus. Not financial advice.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-button').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        const c = document.getElementById(b.getAttribute('aria-controls'));
+        c.classList.remove('open'); c.style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        const content = document.getElementById(btn.getAttribute('aria-controls'));
+        content.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
